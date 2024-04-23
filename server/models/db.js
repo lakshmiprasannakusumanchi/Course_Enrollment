@@ -4,9 +4,10 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 // MongoDB Connection
-mongoose.connect('mongodb://0.0.0.0:27017/db_test', {
+mongoose.connect('mongodb+srv://student_user:oCEQTkO20V0DGTN3@cluster0.gfrftal.mongodb.net/crud_data', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 });
 
 // Connection Event Handlers
