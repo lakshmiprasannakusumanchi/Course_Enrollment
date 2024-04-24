@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-require('./models/db');
+require('./db');
 const app = express();
 
 const PORT = process.env.PORT || 5000;
@@ -14,14 +14,16 @@ app.use('/api/students', require('./routes/students'));
 app.use('/api/user', require('./routes/user'));
 app.use('/api/courses', require('./routes/courses'));
 
+// Serve static files in development
+if (process.env.NODE_ENV === 'development') {
+  app.use(express.static(path.join(__dirname, 'client')));
+}
 
+// For production, handle serving the client-side files differently
 if (process.env.NODE_ENV === 'production') {
-
-  app.use(express.static('client/build'));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
+  // Handle serving client-side files from a CDN or other static file server
+  // Example:
+  // app.use(express.static(path.join(__dirname, 'client')));
 }
 
 app.listen(PORT, () => console.log(`App running on port ${PORT}`));
