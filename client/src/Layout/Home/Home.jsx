@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Student from "../../components/Student/Student";
 import SearchStudents from "../../components/SearchStudent/SearchStudents";
 import SideBar from '../../components/Courses/SideBar.jsx'
+import {baseUrl} from '../../url.js'
 const Home = () => {
   const [data, setData] = useState(null);
   const [allStudents, setAllStudents] = useState(null);
@@ -31,7 +32,7 @@ const Home = () => {
 
     const fetchData = async () => {
       try {
-        const students = await axios("/api/students/");
+        const students = await axios(`${baseUrl}/api/students/`);
         setData(students.data);
       } catch (err) {
         setError(err.message);
@@ -44,7 +45,7 @@ const Home = () => {
   const removeStudent = async (id) => {
     try {
       await axios.delete(`/api/students/${id}`);
-      const students = await axios("/api/students/");
+      const students = await axios(`${baseUrl}/api/students/`);
       setData(students.data);
     } catch (err) {
       setError(err.message);

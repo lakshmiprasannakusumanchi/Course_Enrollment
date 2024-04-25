@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Signup.css';
 import { useNavigate,Link } from 'react-router-dom';
 import axios from 'axios';
+import {baseUrl} from '../url.js'
 
 const Signup = () => {
     const [fullName, setFullName] = useState('');
@@ -13,7 +14,7 @@ const Signup = () => {
     const handleRegistration = (e) => {
         e.preventDefault();
         console.log({ fullName, email, password, role });
-        axios.post('/api/user/register', { fullName, email, password, role })
+        axios.post(`${baseUrl}/api/user/register`, { fullName, email, password, role })
             .then(res => {
                 console.log(res.data);
                 navigate('/login');

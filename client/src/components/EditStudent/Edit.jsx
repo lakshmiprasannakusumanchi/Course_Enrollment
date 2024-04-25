@@ -3,7 +3,7 @@ import './EditStudent.css';
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import { useLocation, useNavigate } from 'react-router-dom';
-
+import {baseUrl} from '../../url.js'
 const EditStudent = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,7 +22,7 @@ const EditStudent = () => {
       try {
         const search = location.search;
         const id = search.substring(1, search.length);
-        const updateStudent = await axios.get(`/api/students/${id}`);
+        const updateStudent = await axios.get(`${baseUrl}/api/students/${id}`);
         const { name, email, course } = updateStudent.data.student;
         setId(id);
         setName(name);
@@ -56,7 +56,7 @@ const EditStudent = () => {
   const updateStudentHandler = async (e) => {
     e.preventDefault();
     try {
-      const student = await axios.put(`/api/students/${id}`, {
+      const student = await axios.put(`${baseUrl}/api/students/${id}`, {
         name,
         email,
         course 

@@ -3,6 +3,7 @@ import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import SideBar from './SideBar'
+import {baseUrl} from '../../url.js'
 const AddCoursePage = () => {
     const [newCourse, setNewCourse] = useState({
         name: '',
@@ -25,7 +26,7 @@ const AddCoursePage = () => {
     })
     const addCourse = async () => {
         try {
-            await axios.post('/api/courses', newCourse);
+            await axios.post(`${baseUrl}/api/courses`, newCourse);
             navigate('/courses');
         } catch (error) {
             console.error('Error adding course:', error);

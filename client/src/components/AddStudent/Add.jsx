@@ -4,7 +4,7 @@ import axios from "axios";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-
+import {baseUrl} from '../../url.js'
 const Add = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -30,7 +30,7 @@ const Add = () => {
   const addStudent = async (e) => {
     e.preventDefault();
     try {
-      const newStudent = await axios.post("/api/students/", {
+      const newStudent = await axios.post(`${baseUrl}/api/students/`, {
         name: formData.name,
         email: formData.email,
         course: formData.course

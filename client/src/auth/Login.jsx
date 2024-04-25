@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
-
+import {baseUrl} from '../url.js'
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('/api/user/login', { email, password });
+      const response = await axios.post(`${baseUrl}/api/user/login`, { email, password });
 
       console.log(response.data);
 

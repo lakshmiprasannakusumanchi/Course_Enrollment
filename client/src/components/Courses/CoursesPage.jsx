@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, Outlet,useNavigate } from 'react-router-dom';
-
+import {baseUrl} from '../../url.js'
 const CoursesPage = () => {
     const [courses, setCourses] = useState([]);
     const role = localStorage.getItem('role');
@@ -17,7 +17,7 @@ const CoursesPage = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('/api/courses');
+            const response = await axios.get(`${baseUrl}/api/courses`);
             setCourses(response.data.courses);
         } catch (error) {
             console.error('Error fetching courses:', error);
@@ -27,7 +27,7 @@ const CoursesPage = () => {
     const deleteCourse = async (id) => {
         if (role === 'admin') {
             try {
-                await axios.delete(`/api/courses/${id}`);
+                await axios.delete(`api/courses/${id}`);
                 fetchData();
             } catch (error) {
                 console.error('Error deleting course:', error);

@@ -1,0 +1,1 @@
+export const baseUrl = `https://course-enrollment-ler1.onrender.com`
