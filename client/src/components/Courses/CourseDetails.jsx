@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import {baseUrl} from '../../url.js'
 const CourseDetails = () => {
     const [course, setCourse] = useState(null);
     const { name } = useParams();
@@ -10,7 +10,7 @@ const CourseDetails = () => {
     useEffect(() => {
         const fetchCourse = async () => {
             try {
-                const response = await axios.get(`/api/courses/${name}`); 
+                const response = await axios.get(`${baseUrl}/api/courses/${name}`); 
                 setCourse(response.data.course);
             } catch (error) {
                 console.error('Error fetching course details:', error);

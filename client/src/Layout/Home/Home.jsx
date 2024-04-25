@@ -44,7 +44,7 @@ const Home = () => {
 
   const removeStudent = async (id) => {
     try {
-      await axios.delete(`/api/students/${id}`);
+      await axios.delete(`${baseUrl}/api/students/${id}`);
       const students = await axios(`${baseUrl}/api/students/`);
       setData(students.data);
     } catch (err) {
